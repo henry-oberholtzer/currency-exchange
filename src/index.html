@@ -12,17 +12,22 @@
         </div>
         <div id="concent-body">
             <div id="form-field">
-                <h2>Convert US to:</h2>
+                <h2>Convert Between:</h2>
                 <form id="form">
-                    <select id="currencyFrom">
-                    </select>
-                    <select id="currencyTo">
-                    </select>
-                    <button id="submit" type="submit">Convert</button>
+                    <div class="currencyGroup">
+                        <input type="number" min="0" id="currencyFromAmount" value="10">
+                        <select id="currencyFrom">
+                        </select>
+                    </div>
+                    <div id="explain">
+                        <p>Is Equivalent To:</p>
+                    </div>
+                    <div class="currencyGroup">
+                        <input type="number" id="currencyToAmount" disabled>
+                        <select id="currencyTo">
+                        </select>
+                    </div>
                 </form>
-            </div>
-            <div id="conversion-result">
-
             </div>
         </div>
     </div>
