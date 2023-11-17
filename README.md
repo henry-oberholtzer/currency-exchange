@@ -24,6 +24,13 @@ By Henry Oberholtzer
 *   User should see a message in the DOM when an error is recieved
 *   If a particular currency is not available to convert from, user should recieve a message in the DOM to that affect
 
+#### Extra Features
+
+*   Allow for converting between all currency types
+*   Allow for convertion from and to USD
+*   Cache API results
+*   Dropdown menu for currencies
+
 ### Technical Requirements
 
 *   Application must make an API call
