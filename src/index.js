@@ -20,11 +20,17 @@ const printCurrencyList = (response) => {
     const currencyToOptions = document.getElementById("currencyTo");
     const currencyFromOptions = document.getElementById("currencyFrom");
     response["supported_codes"].forEach((currencyName) => {
-        const option = document.createElement("option");
-        option.setAttribute("value", currencyName[0]);
-        option.append(`${currencyName[0]}: ${currencyName[1]}`);
-        currencyFromOptions.append(option);
-        currencyToOptions.append(option);
+        const optionTo = document.createElement("option");
+        optionTo.setAttribute("value", currencyName[0]);
+        optionTo.append(`${currencyName[0]}: ${currencyName[1]}`);
+        const optionFrom = document.createElement("option");
+        optionFrom.setAttribute("value", currencyName[0]);
+        optionFrom.append(`${currencyName[0]}: ${currencyName[1]}`);
+        if (currencyName[0] === "USD") {
+            optionFrom.setAttribute("selected", true);
+        }
+        currencyFromOptions.append(optionFrom);
+        currencyToOptions.append(optionTo);
     });
 };
 
