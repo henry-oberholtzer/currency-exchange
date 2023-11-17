@@ -28,8 +28,4 @@ export default class CurrencyExchange {
                 return error;
             });
     }
-    
-    static currencyTo() {
-
-    }
 }

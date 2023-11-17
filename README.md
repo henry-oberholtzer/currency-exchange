@@ -22,7 +22,7 @@ By Henry Oberholtzer
 *   User should recieve the USD amount converted to their currency of choice
 *   User should have access to at least five different currencies
 *   User should see a message in the DOM when an error is recieved
-*   If a particular currency is not available to convert from, user should recieve a message in the DOM to that affect
+*   If a particular currency is not available to convert from, user should recieve a message in the DOM to that effect
 
 #### Extra Features
 
