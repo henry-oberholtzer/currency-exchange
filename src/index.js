@@ -7,22 +7,31 @@ const addToSessionStorage = (name, object) => {
 
 const makeExchangeRateCall = () => {
     if (sessionStorage.exchangeRates) {
-        const ratesStored = JSON.parse(sessionStorage.countryCodes);
+        const ratesStored = JSON.parse(sessionStorage.exchangeRates);
         printExchange(ratesStored);
+        printTime(ratesStored);
     }   else {
         CurrencyExchange.getExchangeRates()
             .then((response) => {
                 if (response["conversion_rates"]) {
                     printExchange(response);
                     addToSessionStorage("exchangeRates", response);
+                    printTime(response);
                 }   else {
                     printExchangeError(response);
                 }
             });
     }
 };
-const printExchange = (response) => {
 
+const printTime = (response) => {
+    const utc = response["time_last_update_utc"];
+    const date = new Date(utc);
+    const dateString = date.toLocaleDateString();
+    document.getElementById("dateUpdated").append(dateString);
+};
+
+const printExchange = (response) => {
     const ratesObject = response["conversion_rates"];
     const currencyFrom = document.getElementById("currencyFrom").value;
     const currencyTo = document.getElementById("currencyTo").value;
@@ -30,9 +39,8 @@ const printExchange = (response) => {
     const ratioTo = ratesObject[currencyTo];
     const currencyFromAmount = parseInt(document.getElementById("currencyFromAmount").value);
     const currencyToAmount = document.getElementById("currencyToAmount");
-    const conversion = (ratioFrom * currencyFromAmount) * ratioTo;
-    console.log(conversion);
-    currencyToAmount.append(conversion);
+    const conversion = Math.round(((ratioTo / ratioFrom) * currencyFromAmount) * 100) / 100;
+    currencyToAmount.setAttribute("value", conversion);
 };
 
 const printExchangeError = (response) => {
@@ -91,6 +99,15 @@ const printCurrencyError = (response) => {
     currencyToOptions.append(optionToFailed);
     currencyFromOptions.append(optionFromFailed);
 };
+
+document.getElementById("form").addEventListener("change", () => {
+    if (sessionStorage.exchangeRates) {
+        const ratesStored = JSON.parse(sessionStorage.exchangeRates);
+        printExchange(ratesStored);
+    } else {
+        makeExchangeRateCall();
+    }
+});
 
 window.addEventListener("load", () => {
     makeCountryCodesCall();
