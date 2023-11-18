@@ -1,4 +1,4 @@
-import './css/styles.css';
+import "./css/styles.css";
 import CurrencyExchange from "./js/currency-exchange";
 
 const addToSessionStorage = (name, object) => {
@@ -10,17 +10,16 @@ const makeExchangeRateCall = () => {
         const ratesStored = JSON.parse(sessionStorage.exchangeRates);
         printExchange(ratesStored);
         printTime(ratesStored);
-    }   else {
-        CurrencyExchange.getExchangeRates()
-            .then((response) => {
-                if (response["conversion_rates"]) {
-                    printExchange(response);
-                    addToSessionStorage("exchangeRates", response);
-                    printTime(response);
-                }   else {
-                    printExchangeError(response);
-                }
-            });
+    } else {
+        CurrencyExchange.getExchangeRates().then((response) => {
+            if (response["conversion_rates"]) {
+                printExchange(response);
+                addToSessionStorage("exchangeRates", response);
+                printTime(response);
+            } else {
+                printExchangeError(response);
+            }
+        });
     }
 };
 
@@ -28,17 +27,28 @@ const printTime = (response) => {
     const utc = response["time_last_update_utc"];
     const date = new Date(utc);
     const dateString = date.toLocaleDateString();
-    document.getElementById("dateUpdated").append(dateString);
+    document.getElementById("dateUpdated").innerHTML = "";
+    document.getElementById("dateUpdated").append(`Last updated ${dateString}`);
 };
 
 const printExchange = (response) => {
     const ratesObject = response["conversion_rates"];
     const currencyFrom = document.getElementById("currencyFrom").value;
     const currencyTo = document.getElementById("currencyTo").value;
+    if (
+        !Object.prototype.hasOwnProperty.call(ratesObject, currencyFrom) ||
+        !Object.prototype.hasOwnProperty.call(ratesObject, currencyTo)
+    ) {
+        return printExchangeError("This Country Code Is Not Valid");
+    } else {
+        printTime(response);
+    }
     const ratioFrom = ratesObject[currencyFrom];
     const ratioTo = ratesObject[currencyTo];
     const currencyFromAmount = () => {
-        const num = parseInt(document.getElementById("currencyFromAmount").value);
+        const num = parseInt(
+            document.getElementById("currencyFromAmount").value
+        );
         if (num) {
             return num;
         } else {
@@ -46,12 +56,14 @@ const printExchange = (response) => {
         }
     };
     const currencyToAmount = document.getElementById("currencyToAmount");
-    const conversion = Math.round(((ratioTo / ratioFrom) * currencyFromAmount()) * 100) / 100;
+    const conversion =
+        Math.round((ratioTo / ratioFrom) * currencyFromAmount() * 100) / 100;
     currencyToAmount.setAttribute("value", conversion);
 };
 
 const printExchangeError = (response) => {
-    return response;
+    document.getElementById("dateUpdated").innerHTML = "";
+    document.getElementById("dateUpdated").append(response);
 };
 
 const makeCountryCodesCall = () => {
@@ -59,15 +71,14 @@ const makeCountryCodesCall = () => {
         const codesStored = JSON.parse(sessionStorage.countryCodes);
         printCurrencyList(codesStored);
     } else {
-        CurrencyExchange.getCountryCodes()
-            .then((response) => {
-                if (response["supported_codes"]) {
-                    printCurrencyList(response);
-                    addToSessionStorage("countryCodes", response);
-                } else {
-                    printCurrencyError(response);
-                }
-            });
+        CurrencyExchange.getCountryCodes().then((response) => {
+            if (response["supported_codes"]) {
+                printCurrencyList(response);
+                addToSessionStorage("countryCodes", response);
+            } else {
+                printCurrencyError(response);
+            }
+        });
     }
 };
 
@@ -100,7 +111,9 @@ const printCurrencyError = (response) => {
     const optionToFailed = document.createElement("option");
     const optionFromFailed = document.createElement("option");
     optionToFailed.setAttribute("disabled", true);
+    optionToFailed.setAttribute("selected", true);
     optionFromFailed.setAttribute("disabled", true);
+    optionFromFailed.setAttribute("selected", true);
     optionToFailed.append(response);
     optionFromFailed.append(response);
     currencyToOptions.append(optionToFailed);

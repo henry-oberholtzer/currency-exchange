@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
 :root {
     --footer-color: #494949;
@@ -13,9 +13,9 @@
 
 * {
     box-sizing: border-box;
-    margin: -1px;
+    margin: 0;
     padding: 0;
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 500;
     /* border: 1px solid red; */
 }
@@ -32,7 +32,7 @@ body {
 }
 
 #main {
-    width: 70%;
+    width: 650px;
     aspect-ratio: 4 / 2;
     margin: auto;
     align-self: center;
@@ -40,33 +40,52 @@ body {
     bottom: 5%;
     padding: 1em;
     background: var(--currency-background);
+    background-image: url(./../assets/images/money_background.svg);
+    background-origin: border-box;
+    background-repeat: no-repeat;
     border: 1em solid var(--currency-border);
 }
 
 #header {
     color: var(--money-purple);
     width: 100%;
-    font-family: 'Poppins';
+    font-family: "Poppins";
     text-align: center;
+    position: fixed;
+    left: 0;
 }
 
+#subheader {
+    position: relative;
+    top: 12em;
+}
 
+#content-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 
 #form {
     display: flex;
     justify-content: space-between;
-    padding: 0 1em 0 1em;
     align-items: center;
+    width: 100%;
 }
 
 .currencyGroup {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
 }
 
 .currencyGroup * {
     text-align: center;
+}
+
+.currencyGroup:nth-of-type(2) {
+    width: 20%;
 }
 
 input {
@@ -74,24 +93,26 @@ input {
     color: var(--money-purple);
     border: 0;
     font-size: 4em;
+    width: 100%;
 }
 
 #equal {
-    font-size: 5em;
+    font-size: 6em;
     color: var(--money-purple);
 }
 
 select {
     background-color: var(--currency-light-background);
     border: 2px solid var(--currency-border);
+    color: var(--currency-border);
     padding: 2px;
     position: absolute;
-    width: calc(30% - 1em);
-    bottom: 5em;
+    width: 234.4px;
+    bottom: 4em;
 }
 
 #footer {
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-weight: 500;
     position: fixed;
     left: 2em;
@@ -100,7 +121,7 @@ select {
     color: var(--footer-color);
 }
 
-#footer a{
+#footer a {
     text-decoration: none;
     color: inherit;
 }

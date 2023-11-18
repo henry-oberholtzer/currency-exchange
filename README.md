@@ -50,9 +50,17 @@ By Henry Oberholtzer
 
 ## Known Bugs
 
-*   None at the moment
+*   Not mobile responsive
+*   Queries that result in a number over 4 digits will break out of the UI.
 
-## License
+## Licenses & Attribution
 
 Copyright [Henry Oberholtzer](https://www.henryoberholtzer.com/) (c) 2023
+
 Code licensed under GNU GPLv3
+
+Public Domain Images Used:
+
+[Woodcut of a cat](https://www.flickr.com/photos/58558794@N07/5436866230) from Provenance Online Project, 2011
+
+[IC55 P2759 587d](https://www.flickr.com/photos/58558794@N07/6927291684/) from Provenance Online Project, 2011
