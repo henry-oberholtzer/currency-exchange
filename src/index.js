@@ -37,9 +37,16 @@ const printExchange = (response) => {
     const currencyTo = document.getElementById("currencyTo").value;
     const ratioFrom = ratesObject[currencyFrom];
     const ratioTo = ratesObject[currencyTo];
-    const currencyFromAmount = parseInt(document.getElementById("currencyFromAmount").value);
+    const currencyFromAmount = () => {
+        const num = parseInt(document.getElementById("currencyFromAmount").value);
+        if (num) {
+            return num;
+        } else {
+            return 0;
+        }
+    };
     const currencyToAmount = document.getElementById("currencyToAmount");
-    const conversion = Math.round(((ratioTo / ratioFrom) * currencyFromAmount) * 100) / 100;
+    const conversion = Math.round(((ratioTo / ratioFrom) * currencyFromAmount()) * 100) / 100;
     currencyToAmount.setAttribute("value", conversion);
 };
 

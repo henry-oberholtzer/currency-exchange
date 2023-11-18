@@ -14,24 +14,21 @@
             </div>
         </div>
         <div id="content-body">
-            <div id="form-field">
-                <h2>Convert Between:</h2>
                 <form id="form">
                     <div class="currencyGroup">
-                        <input type="number" min="0" id="currencyFromAmount" value="10">
+                        <input type="text" inputmode="numeric" id="currencyFromAmount" value="10">
                         <select id="currencyFrom">
                         </select>
                     </div>
-                    <div id="explain">
-                        <p>Is Equivalent To:</p>
+                    <div class="currencyGroup">
+                        <h1 id="equal">=</h1>
                     </div>
                     <div class="currencyGroup">
-                        <input type="number" id="currencyToAmount" disabled>
+                        <input type="text" inputmode="numeric" id="currencyToAmount" disabled>
                         <select id="currencyTo">
                         </select>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
     <div id="footer">
