@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+    --footer-color: #494949;
+    --footer-color-hover: #a5a5a5;
+    --background-gradient: radial-gradient(#2b2b2b, #1d1d1d);
+    --euro-yellow: #dddd78;
+    --money-purple: #39113b;
+    --currency-background-gradient: linear-gradient(0.25turn, 
+    #f8edf7 0%, 
+    #f8edf7 25%, 
+    #b8adc3 25%, 
+    #c4b2c1 40%,
+    #c2aebc 42%,
+    #c2aebc 55%,
+    #b188a1 55%,
+    #b188a1 80%,
+    #b5afc5 80%,
+    #b5afc5 94%,
+    #f8edf7 96%,
+    #f8edf7 100%);
+    --currency-invert-gradient: linear-gradient(0.25turn,
+    #012d62 0%,
+    #012d62 45%,
+    #c2aebc
+    );
+}
+
+* {
+    box-sizing: border-box;
+    margin: -1px;
+    padding: 0;
+    font-family: 'Poppins';
+    font-weight: 500;
+    /* border: 1px solid red; */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    background: var(--background-gradient);
+}
+
+#main {
+    width: 70%;
+    aspect-ratio: 4 / 2;
+    margin: auto;
+    align-self: center;
+    position: relative;
+    bottom: 5%;
+    padding: 1em;
+    background: var(--currency-background-gradient);
+}
+
+#currency-exchange {
+    background: var(--currency-invert-gradient);
+    color: var(--euro-yellow);
+    width: calc(65% - 2em);
+    font-family: 'Poppins';
+    font-weight: 500;
+    padding-left: 0.2em;
+    text-decoration: underline;
+}
+
+input {
+    background-color: transparent;
+    color: var(--money-purple);
+    border: 0;
+    font-size: 300%;
+    text-shadow: #2b2b2b;
+}
+
+#footer {
+    font-family: 'Poppins';
+    font-weight: 500;
+    position: fixed;
+    left: 2em;
+    bottom: 2em;
+    width: 100%;
+    color: var(--footer-color);
+}
+
+#footer a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#footer a:hover {
+    transition: color 0.1s ease-in-out;
+    color: var(--footer-color-hover);
+}
