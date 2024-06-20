@@ -27,7 +27,7 @@ By Henry Oberholtzer
 #### Extra Features
 
 *   Allow for converting between all currency types
-*   Allow for convertion from and to USD
+*   Allow for conversion to and from USD
 *   Cache API results
 *   Dropdown menu for currencies
 
